@@ -117,4 +117,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+    public void sortByPerson(String order) {
+        requireNonNull(order);
+        this.persons.sortByName(order);
+    }
 }
