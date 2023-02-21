@@ -118,7 +118,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
-    public void sortByPerson(String order) {
+    /**
+     * Sorts Persons in the address book by fullName according to specified order
+     * @param order specified as ascending or descending
+     */
+    public void sortPersonByName(String order) {
         requireNonNull(order);
         this.persons.sortByName(order);
     }

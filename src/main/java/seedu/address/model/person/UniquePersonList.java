@@ -136,11 +136,17 @@ public class UniquePersonList implements Iterable<Person> {
         return true;
     }
 
+    /**
+     * Sorts persons in internalList by name according to the specified order.
+     * @param order specified as ascending or descending.
+     */
     public void sortByName(String order) {
         if (order.contains("asc")) {
-            FXCollections.sort(this.internalList, Comparator.comparing(person -> person.getName(), new sortByName()));
+            FXCollections.sort(this.internalList,
+                    Comparator.comparing(person -> person.getName(), new SortByName()));
         } else {
-            FXCollections.sort(this.internalList, Comparator.comparing(person -> person.getName(), new sortByName().reversed()));
+            FXCollections.sort(this.internalList,
+                    Comparator.comparing(person -> person.getName(), new SortByName().reversed()));
         }
 
     }

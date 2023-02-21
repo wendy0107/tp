@@ -114,7 +114,7 @@ public class ModelManager implements Model {
     @Override
     public void sortPersonList(String order) {
         requireNonNull(order);
-        addressBook.sortByPerson(order);
+        addressBook.sortPersonByName(order);
 
     }
 
