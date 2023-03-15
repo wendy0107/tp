@@ -118,8 +118,9 @@ public class Person {
                 .append(phone)
                 .append(email)
                 .append(address)
-                .append(getRemark())
-                .append(" Tags: ");
+                .append(" Remark: ")
+                .append(getRemark());
+
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
