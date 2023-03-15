@@ -152,4 +152,42 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_missingValue_success() {
+        // null address
+        Person expectedPerson = new PersonBuilder(AMY).withAddress(null).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
+        // null email
+        expectedPerson = new PersonBuilder(AMY).withEmail(null).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY
+                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
+        // null phone
+        expectedPerson = new PersonBuilder(AMY).withPhone(null).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
+        // null address and null email
+        expectedPerson = new PersonBuilder(AMY).withAddress(null).withEmail(null).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
+                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
+        // null address and null phone
+        expectedPerson = new PersonBuilder(AMY).withAddress(null).withPhone(null).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY
+                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
+        // null email and null phone
+        expectedPerson = new PersonBuilder(AMY).withEmail(null).withPhone(null).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + ADDRESS_DESC_AMY
+                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
+        // all optional fields are null
+        expectedPerson = new PersonBuilder(AMY).withAddress(null).withEmail(null).withPhone(null).build();
+        assertParseSuccess(parser, NAME_DESC_AMY
+                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+    }
 }
